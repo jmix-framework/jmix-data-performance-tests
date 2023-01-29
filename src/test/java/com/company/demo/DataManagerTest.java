@@ -127,7 +127,7 @@ class DataManagerTest {
 			for (int i = 0; i < TestHelper.EMPLOYEE_COUNT; i++) {
 				Employee employee = helper.createEmployee(faker, departments);
 				saveContext.saving(employee);
-				if (i > 0 && i % BATCH_SIZE == 0) {
+				if (i > 0 && (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT - 1)) {
 					dataManager.save(saveContext);
 					saveContext = new SaveContext().setDiscardSaved(true);
 				}
@@ -147,7 +147,7 @@ class DataManagerTest {
 		for (int i = 0; i < TestHelper.EMPLOYEE_COUNT; i++) {
 			Employee employee = helper.createEmployee(faker, departments);
 			saveContext.saving(employee);
-			if (i > 0 && i % BATCH_SIZE == 0) {
+			if (i > 0 && (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT - 1)) {
 				dataManager.unconstrained().save(saveContext);
 				saveContext = new SaveContext().setDiscardSaved(true);
 			}

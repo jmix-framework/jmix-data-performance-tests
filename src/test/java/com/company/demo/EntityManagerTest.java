@@ -92,10 +92,10 @@ public class EntityManagerTest {
         for (int i = 0; i < TestHelper.EMPLOYEE_COUNT; i++) {
             Employee employee = helper.createEmployee(faker, departments);
             employees.add(employee);
-            if (i > 0 && i % BATCH_SIZE == 0) {
+            if (i > 0 && (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT - 1)) {
                 transactionTemplate.executeWithoutResult(transactionStatus -> {
                     for (Employee e : employees) {
-                        entityManager.persist(employee);
+                        entityManager.persist(e);
                     }
                 });
                 employees.clear();
