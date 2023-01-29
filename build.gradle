@@ -40,6 +40,8 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     implementation 'org.postgresql:postgresql'
+
+    testImplementation 'net.datafaker:datafaker:1.7.0'
 }
 
 test {
