@@ -64,7 +64,7 @@ class DataManagerTest {
 		}
 
 		long execTime = System.currentTimeMillis() - startTime;
-		System.out.println("- executed oneByOne in " + execTime + " ms");
+		System.out.println("- DataManagerTest.oneByOne: " + execTime + " ms");
 	}
 
 	@Test
@@ -82,7 +82,7 @@ class DataManagerTest {
 		}
 
 		long execTime = System.currentTimeMillis() - startTime;
-		System.out.println("- executed oneByOne_discardSaved in " + execTime + " ms");
+		System.out.println("- DataManagerTest.oneByOne_discardSaved: " + execTime + " ms");
 	}
 
 	@Test
@@ -98,7 +98,7 @@ class DataManagerTest {
 		}
 
 		long execTime = System.currentTimeMillis() - startTime;
-		System.out.println("- executed oneByOne_discardSaved_unconstrained in " + execTime + " ms");
+		System.out.println("- DataManagerTest.oneByOne_discardSaved_unconstrained: " + execTime + " ms");
 	}
 
 	@Test
@@ -114,11 +114,32 @@ class DataManagerTest {
 		dataManager.unconstrained().save(saveContext);
 
 		long execTime = System.currentTimeMillis() - startTime;
-		System.out.println("- executed allAtOnce_discardSaved_unconstrained in " + execTime + " ms");
+		System.out.println("- DataManagerTest.allAtOnce_discardSaved_unconstrained: " + execTime + " ms");
 	}
 
 	@Test
 	void inBatches() {
+		Faker faker = new Faker();
+		long startTime = System.currentTimeMillis();
+
+		authenticator.runWithSystem(() -> {
+			SaveContext saveContext = new SaveContext().setDiscardSaved(true);
+			for (int i = 0; i < TestHelper.EMPLOYEE_COUNT; i++) {
+				Employee employee = helper.createEmployee(faker, departments);
+				saveContext.saving(employee);
+				if (i > 0 && i % BATCH_SIZE == 0) {
+					dataManager.save(saveContext);
+					saveContext = new SaveContext().setDiscardSaved(true);
+				}
+			}
+		});
+
+		long execTime = System.currentTimeMillis() - startTime;
+		System.out.println("- DataManagerTest.inBatches ("+ BATCH_SIZE +"): " + execTime + " ms");
+	}
+
+	@Test
+	void inBatches_unconstrained() {
 		Faker faker = new Faker();
 		long startTime = System.currentTimeMillis();
 
@@ -133,7 +154,7 @@ class DataManagerTest {
 		}
 
 		long execTime = System.currentTimeMillis() - startTime;
-		System.out.println("- executed inBatches in " + execTime + " ms");
+		System.out.println("- DataManagerTest.inBatches_unconstrained ("+ BATCH_SIZE +"): " + execTime + " ms");
 	}
 
 }

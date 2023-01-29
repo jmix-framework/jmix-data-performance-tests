@@ -64,7 +64,7 @@ public class EntityManagerTest {
         }
 
         long execTime = System.currentTimeMillis() - startTime;
-        System.out.println("- executed oneByOne in " + execTime + " ms");
+        System.out.println("- EntityManagerTest.oneByOne: " + execTime + " ms");
     }
 
     @Test
@@ -80,7 +80,7 @@ public class EntityManagerTest {
         });
 
         long execTime = System.currentTimeMillis() - startTime;
-        System.out.println("- executed allAtOnce in " + execTime + " ms");
+        System.out.println("- EntityManagerTest.allAtOnce: " + execTime + " ms");
     }
 
     @Test
@@ -103,7 +103,7 @@ public class EntityManagerTest {
         }
 
         long execTime = System.currentTimeMillis() - startTime;
-        System.out.println("- executed inBatches in " + execTime + " ms");
+        System.out.println("- EntityManagerTest.inBatches (" + BATCH_SIZE + "): " + execTime + " ms");
     }
 
 }

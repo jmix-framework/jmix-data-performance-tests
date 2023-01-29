@@ -20,7 +20,7 @@ import java.util.List;
 @SpringBootTest
 public class JdbcTest {
 
-    private static final int BATCH_SIZE = 1000;
+    private static final int BATCH_SIZE = 100;
 
     @Autowired
     TransactionTemplate transactionTemplate;
@@ -65,7 +65,7 @@ public class JdbcTest {
         }
 
         long execTime = System.currentTimeMillis() - startTime;
-        System.out.println("- executed oneByOne in " + execTime + " ms");
+        System.out.println("- JdbcTest.oneByOne: " + execTime + " ms");
     }
 
     @Test
@@ -100,7 +100,7 @@ public class JdbcTest {
 
 
         long execTime = System.currentTimeMillis() - startTime;
-        System.out.println("- executed inBatches in " + execTime + " ms");
+        System.out.println("- JdbcTest.inBatches (" + BATCH_SIZE + "): " + execTime + " ms");
     }
 
     private static void setParameters(Employee employee, PreparedStatement ps) throws SQLException {
