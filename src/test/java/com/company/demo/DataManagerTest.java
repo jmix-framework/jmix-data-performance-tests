@@ -124,10 +124,10 @@ class DataManagerTest {
 
 		authenticator.runWithSystem(() -> {
 			SaveContext saveContext = new SaveContext().setDiscardSaved(true);
-			for (int i = 0; i < TestHelper.EMPLOYEE_COUNT; i++) {
+			for (int i = 1; i <= TestHelper.EMPLOYEE_COUNT; i++) {
 				Employee employee = helper.createEmployee(faker, departments);
 				saveContext.saving(employee);
-				if (i > 0 && (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT - 1)) {
+				if (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT) {
 					dataManager.save(saveContext);
 					saveContext = new SaveContext().setDiscardSaved(true);
 				}
@@ -144,10 +144,10 @@ class DataManagerTest {
 		long startTime = System.currentTimeMillis();
 
 		SaveContext saveContext = new SaveContext().setDiscardSaved(true);
-		for (int i = 0; i < TestHelper.EMPLOYEE_COUNT; i++) {
+		for (int i = 1; i <= TestHelper.EMPLOYEE_COUNT; i++) {
 			Employee employee = helper.createEmployee(faker, departments);
 			saveContext.saving(employee);
-			if (i > 0 && (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT - 1)) {
+			if (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT) {
 				dataManager.unconstrained().save(saveContext);
 				saveContext = new SaveContext().setDiscardSaved(true);
 			}

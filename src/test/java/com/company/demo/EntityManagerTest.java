@@ -89,10 +89,10 @@ public class EntityManagerTest {
         long startTime = System.currentTimeMillis();
 
         List<Employee> employees = new ArrayList<>();
-        for (int i = 0; i < TestHelper.EMPLOYEE_COUNT; i++) {
+        for (int i = 1; i <= TestHelper.EMPLOYEE_COUNT; i++) {
             Employee employee = helper.createEmployee(faker, departments);
             employees.add(employee);
-            if (i > 0 && (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT - 1)) {
+            if (i % BATCH_SIZE == 0 || i == TestHelper.EMPLOYEE_COUNT) {
                 transactionTemplate.executeWithoutResult(transactionStatus -> {
                     for (Employee e : employees) {
                         entityManager.persist(e);
