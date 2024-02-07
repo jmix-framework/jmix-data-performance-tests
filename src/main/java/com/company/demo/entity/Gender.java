@@ -1,8 +1,8 @@
 package com.company.demo.entity;
 
-import io.jmix.core.metamodel.datatype.impl.EnumClass;
+import io.jmix.core.metamodel.datatype.EnumClass;
 
-import javax.annotation.Nullable;
+import org.springframework.lang.Nullable;
 
 
 public enum Gender implements EnumClass<String> {
