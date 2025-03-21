@@ -12,20 +12,20 @@ Results of the execution on MacBook M1 Pro:
 
 Using `DataManager`:
 
-- DataManagerTest.oneByOne: 17361 ms
-- DataManagerTest.oneByOne_discardSaved: 6438 ms
-- DataManagerTest.oneByOne_discardSaved_unconstrained: 2996 ms
-- DataManagerTest.allAtOnce_discardSaved_unconstrained: 2567 ms
-- DataManagerTest.inBatches (100): 1142 ms
-- DataManagerTest.inBatches_unconstrained (100): 867 ms
+- DataManagerTest.oneByOne: 14784 ms
+- DataManagerTest.oneByOne_discardSaved: 5860 ms
+- DataManagerTest.oneByOne_discardSaved_unconstrained: 3103 ms
+- DataManagerTest.allAtOnce_discardSaved_unconstrained: 1918 ms
+- DataManagerTest.inBatches (100): 1110 ms
+- DataManagerTest.inBatches_unconstrained (100): 893 ms
 
 Using `EntityManager`:
 
-- EntityManagerTest.oneByOne: 2653 ms
-- EntityManagerTest.inBatches (100): 814 ms
-- EntityManagerTest.allAtOnce: 732 ms
+- EntityManagerTest.oneByOne: 3465 ms
+- EntityManagerTest.inBatches (100): 1544 ms
+- EntityManagerTest.allAtOnce: 989 ms
 
 Using `JdbcTemplate`:
 
-- JdbcTest.oneByOne: 1542 ms
-- JdbcTest.inBatches (100): 467 ms
+- JdbcTest.oneByOne: 1721 ms
+- JdbcTest.inBatches (100): 866 ms
